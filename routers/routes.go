@@ -15,8 +15,8 @@ type Route struct {
 
 type Routes []Route
 
-//注册路由
-func RegisteredRoute() Routes {
+//注册api前缀路由
+func RegisteredApiRoute() Routes {
 	routes := Routes{
 		Route{
 			"Index",
@@ -42,6 +42,15 @@ func RegisteredRoute() Routes {
 			"/user/{uid:[0-9]+}",
 			controllers.AddUser,
 		},
+	}
+	return routes
+}
+
+//注册normal前缀路由
+func RegisteredNormalRoute() Routes {
+	routes := Routes{
+		Route{},
+		Route{},
 	}
 	return routes
 }

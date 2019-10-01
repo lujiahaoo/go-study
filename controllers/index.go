@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/lujiahaoo/go-study/untils"
 )
 
 /*假数据begin*/
@@ -35,6 +36,7 @@ func AllUser(w http.ResponseWriter, R *http.Request) {
 			Completed: false,
 		},
 	}
+	//加了下面的就变成下载文件了，有时间去查查
 	// w.Header().Set("Content-Type", "application/json: charset=UTF-8")
 	// w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(todos); err != nil {
@@ -43,9 +45,14 @@ func AllUser(w http.ResponseWriter, R *http.Request) {
 }
 
 func ShowUser(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	uid := vars["uid"]
-	fmt.Fprintln(w, "the uid is:", uid)
+	var arr [2][3]int = [2][3]int{{1, 2, 3}, {3, 2, 1}}
+
+	resp := untils.Resp{
+		"200",
+		"ok",
+		arr,
+	}
+	resp.MarshalJson(w)
 }
 
 func AddUser(w http.ResponseWriter, r *http.Request) {
