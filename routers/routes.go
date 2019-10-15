@@ -49,7 +49,12 @@ func RegisteredApiRoute() Routes {
 //注册normal前缀路由
 func RegisteredNormalRoute() Routes {
 	routes := Routes{
-		Route{},
+		Route{
+			"Login",
+			"POST",
+			"/login",
+			controllers.Login,
+		},
 		Route{},
 	}
 	return routes

@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/lujiahaoo/go-study/untils"
+	"github.com/lujiahaoo/go-study/utils"
 )
 
 /*假数据begin*/
@@ -21,11 +21,11 @@ type Todos []Todo
 
 /*假数据end*/
 
-func Index(w http.ResponseWriter, R *http.Request) {
+func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "welcome to go-study")
 }
 
-func AllUser(w http.ResponseWriter, R *http.Request) {
+func AllUser(w http.ResponseWriter, r *http.Request) {
 	todos := Todos{
 		Todo{
 			Name:      "W P",
@@ -45,14 +45,13 @@ func AllUser(w http.ResponseWriter, R *http.Request) {
 }
 
 func ShowUser(w http.ResponseWriter, r *http.Request) {
-	var arr [2][3]int = [2][3]int{{1, 2, 3}, {3, 2, 1}}
+	// var arr [2][3]int = [2][3]int{{1, 2, 3}, {3, 2, 1}}
 
-	resp := untils.Resp{
-		"200",
-		"ok",
-		arr,
+	resp := utils.Response{
+		Code: 200,
+		Msg:  "ok",
 	}
-	resp.MarshalJson(w)
+	utils.ResponseWithJson(w, resp)
 }
 
 func AddUser(w http.ResponseWriter, r *http.Request) {
@@ -60,3 +59,32 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 	uid := vars["uid"]
 	fmt.Fprintln(w, "the user of ", uid, "is add")
 }
+
+// func GenerateToken(w http.ResponseWriter, r *http.Request) {
+// 	token := jwt.New(jwt.SigningMethodHS256)
+// 	clamis := make(jwt.MapClaims)
+// 	clamis["aud"] = "lu"
+// 	exp := utils.ENV("exp").(int64) * 3600 * 24
+// 	clamis["exp"] = time.Now().Unix() + exp
+// 	clamis["iat"] = time.Now().Unix()
+// 	token.Claims = clamis
+
+// 	tokenString, _ := token.SignedString([]byte(utils.ENV("appkey").(string)))
+// 	fmt.Println("my token is: ", tokenString)
+
+// 	tokenParse, _ := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+// 		//不要忘了验证Header的加密算法是否是你想要的
+// 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+// 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+// 		}
+// 		return []byte(utils.ENV("appekey").(string)), nil
+// 	})
+
+// 	findToken := tokenParse.Claims.(jwt.MapClaims)
+// 	resp := utils.Response{
+// 		Code: 200,
+// 		Msg:  "ok",
+// 		Data: findToken["aud"],
+// 	}
+// 	utils.ResponseWithJson(w, resp)
+// }

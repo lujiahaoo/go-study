@@ -1,4 +1,4 @@
-package config
+package bootstrap
 
 import (
 	"github.com/gorilla/mux"
@@ -18,3 +18,4 @@ func RegisterGroupMiddleWares(router *mux.Router) {
 		middlewares.AuthCheck,
 	)
 }
+
