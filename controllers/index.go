@@ -51,6 +51,7 @@ func ShowUser(w http.ResponseWriter, r *http.Request) {
 		Code: 200,
 		Msg:  "ok",
 	}
+	fmt.Println(r.Header.Get("sub"))
 	utils.ResponseWithJson(w, resp)
 }
 

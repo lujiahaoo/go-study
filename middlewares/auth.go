@@ -3,7 +3,6 @@ package middlewares
 import (
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/lujiahaoo/go-study/utils"
@@ -40,9 +39,11 @@ func AuthCheck(next http.Handler) http.Handler {
 					http.StatusUnauthorized)
 			} else {
 				claminsToken := token.Claims.(jwt.MapClaims)
-				fmt.Println(claminsToken.VerifyExpiresAt(time.Now().Unix(), true))
-				//把 audience id 加到request中传递下去
-				fmt.Println(claminsToken["aud"])
+				//判断是否过期(设置了iat 和 exp就不用这一步了，在.Valid中会自动验证)
+				//fmt.Println(claminsToken.VerifyExpiresAt(time.Now().Unix(), true))
+
+				//把 audience id 加到Header中传递下去,后面直接拿request Header中就有用户id
+				r.Header.Set("sub", claminsToken["sub"].(string))
 				next.ServeHTTP(w, r)
 			}
 		}

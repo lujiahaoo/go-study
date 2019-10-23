@@ -56,6 +56,12 @@ func RegisteredNormalRoute() Routes {
 			controllers.Login,
 		},
 		Route{},
+		Route{
+			"Register",
+			"POST",
+			"/register",
+			controllers.Register,
+		},
 	}
 	return routes
 }
