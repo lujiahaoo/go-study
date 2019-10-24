@@ -9,7 +9,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/lujiahaoo/go-study/routers"
+	"github.com/lujiahaoo/go-study/app/routers"
 	//"gopkg.in/gomail.v2"
 	// "github.com/lujiahaoo/go-study/router"
 )

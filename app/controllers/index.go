@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/lujiahaoo/go-study/utils"
+	"github.com/lujiahaoo/go-study/app/utils"
 )
 
 /*假数据begin*/

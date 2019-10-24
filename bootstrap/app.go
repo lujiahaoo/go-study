@@ -2,13 +2,14 @@ package bootstrap
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/lujiahaoo/go-study/middlewares"
+	"github.com/lujiahaoo/go-study/app/middlewares"
 )
 
 //注册全局中间件
 func RegisterGlobalMiddleWares(router *mux.Router) {
 	router.Use(
 		middlewares.CrossOrigin,
+		middlewares.Exception,
 	)
 }
 
@@ -18,4 +19,3 @@ func RegisterGroupMiddleWares(router *mux.Router) {
 		middlewares.AuthCheck,
 	)
 }
-

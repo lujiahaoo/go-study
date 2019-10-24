@@ -3,7 +3,7 @@ package routers
 import (
 	"net/http"
 
-	"github.com/lujiahaoo/go-study/controllers"
+	"github.com/lujiahaoo/go-study/app/controllers"
 )
 
 type Route struct {

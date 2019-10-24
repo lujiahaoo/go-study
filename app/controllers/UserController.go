@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/asaskevich/govalidator"
-	"github.com/lujiahaoo/go-study/models"
-	"github.com/lujiahaoo/go-study/utils"
+	"github.com/lujiahaoo/go-study/app/models"
+	"github.com/lujiahaoo/go-study/app/utils"
 )
 
 func getYearAndMonth() string {
@@ -20,7 +20,6 @@ func getYearAndMonth() string {
 }
 
 func Register(w http.ResponseWriter, r *http.Request) {
-	models.Do()
 	var validate registerBody
 	//可以在这之前短信验证
 	json.NewDecoder(r.Body).Decode(&validate)
