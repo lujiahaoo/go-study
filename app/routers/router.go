@@ -7,7 +7,7 @@ import (
 
 func NewRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
-	//以下全部使用了全局中间件Cross
+	//以下全部使用了全局中间件
 	bootstrap.RegisterGlobalMiddleWares(router)
 
 	//基础路由，除了全局中间件没用到其他中间件
@@ -25,7 +25,7 @@ func NewRouter() *mux.Router {
 	api := router.PathPrefix("/api").Subrouter()
 	//中间件需要注册后才可使用
 	bootstrap.RegisterGroupMiddleWares(api)
-	//routes.go文件的注册路由函数,要添加路由都在里面写
+	//api.go文件的注册路由函数,要添加路由都在里面写
 	apiroutes := RegisteredApiRoute()
 	for _, route := range apiroutes {
 		api.

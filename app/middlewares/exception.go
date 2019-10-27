@@ -37,6 +37,11 @@ func Exception(next http.Handler) http.Handler {
 					go utils.SendMail(value, subject, body)
 				}
 				fmt.Printf("异常捕获发送邮件结束时间:%s", time.Now().Unix())
+				utils.ResponseWithJson(
+					w,
+					utils.Response{Code: http.StatusBadRequest, Msg: "系统故障,请联系管理员"},
+					http.StatusBadRequest,
+				)
 			}
 		}()
 		next.ServeHTTP(w, r)
