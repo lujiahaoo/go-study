@@ -43,7 +43,7 @@ func AuthCheck(next http.Handler) http.Handler {
 				//fmt.Println(claminsToken.VerifyExpiresAt(time.Now().Unix(), true))
 
 				//把 audience id 加到Header中传递下去,后面直接拿request Header中就有用户id
-				r.Header.Set("sub", claminsToken["sub"].(string))
+				r.Header.Add("sub", claminsToken["sub"].(string))
 				next.ServeHTTP(w, r)
 			}
 		}

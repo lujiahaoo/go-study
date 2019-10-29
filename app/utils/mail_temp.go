@@ -1,4 +1,4 @@
-package middlewares
+package utils
 
 var MailTemplate = `<html>
  <head>

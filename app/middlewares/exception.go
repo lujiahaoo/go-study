@@ -22,7 +22,7 @@ func Exception(next http.Handler) http.Handler {
 				}
 
 				subject := "【重要错误】 来自项目——" + utils.ENV("appname").(string)
-				body := strings.ReplaceAll(MailTemplate, "{ErrorMsg}", fmt.Sprintf("%s", err))
+				body := strings.ReplaceAll(utils.MailTemplate, "{ErrorMsg}", fmt.Sprintf("%s", err))
 				body = strings.ReplaceAll(body, "{RequestTime}", time.Now().Format("2006-01-02 15:04:05"))
 				body = strings.ReplaceAll(body, "{RequestURL}", r.Method+"  "+r.Host+r.RequestURI)
 				body = strings.ReplaceAll(body, "{RequestUA}", r.UserAgent())
